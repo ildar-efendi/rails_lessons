@@ -1,4 +1,6 @@
-class PostsController < ActionController::Base
+class PostsController < ApplicationController
+	  before_action :post,  only: [:show, :edit, :update, :destroy]
+	  before_action :authenticate_user!, only: [:show, :create, :destroy, :new]
 
 	  def index
 	   # instance param
@@ -14,9 +16,28 @@ class PostsController < ActionController::Base
 
 	  def create
 	  	puts params
-	  	Post.create(post_params)
+	  	current_user.posts.create(post_params)
 	  	# flash[:notice]="Post was succesfully created"
 	  	redirect_to posts_path, notice: "Post was succesfully created"
+	  end
+
+	  def edit
+	  end
+
+	  def update
+	  	@post.assign_attributes(post_params)
+	  	if @post.save
+	  		flash[:notice]="Post was succesfully updated"
+	  	else
+	  		flash[:notice]="Failing updating post"
+	  	end
+	  	redirect_to post_path(@post)
+	  end
+
+	  def destroy
+	  	@post.destroy
+	  	flash[:notice]="Post was succesfully deleted"
+	  	redirect_to posts_path
 	  end
 
 
@@ -30,3 +51,4 @@ class PostsController < ActionController::Base
 
 	  helper_method :post
 end
+

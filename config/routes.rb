@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -13,7 +14,8 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   # V skobkah marshruti
-  resources :posts, only: [:index, :show, :new, :create]
+  resources :posts do resources :comments end
+  #, only: [:index, :show, :new, :create, :edit, :destroy, :update]
 
   # Example resource route with options:
   #   resources :products do

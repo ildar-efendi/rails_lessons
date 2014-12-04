@@ -8,11 +8,17 @@
 		<span>
 			POST HAS <%= pluralize post.comments.count, 'comment' %>
 		</span>
+		<span>
+			<%= link_to "Edit post", edit_post_path(post) %> 
+		</span>
+		<span>
+			<%= link_to "Delete post", post_path(post), method: :delete %> 
+		</span>
 	</li>
 <% end %>
 </ul>
-
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, class:name %>
-<% end %>
+<ul>
 <%= link_to "Create post", new_post_path %>
+<p class="notice"><%= flash[:notice] %></p>
+<p class="alert"><%= flash[:alert] %></p>
+</ul>
