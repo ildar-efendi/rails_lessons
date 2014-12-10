@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 	  before_action :post,  only: [:show, :edit, :update, :destroy]
-	  before_action :authenticate_user!, only: [:show, :create, :destroy, :new]
+	  before_action :authenticate_user!, only: [:create, :destroy, :new]
 
 	  def index
 	   # instance param

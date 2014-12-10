@@ -2,11 +2,21 @@
 <% commentable.comments.each do |comment| %>
 	<li>
 		<div>
+			<b>
 			<%= comment.title %>
+			</b>
 		</div>
 		<div>
 			<%= comment.message %>
 		</div>
+			<i>
+			<b>
+			posted by <%= comment.author_name %>
+			</b>
+			</i>
+		</div>
 	</li>
 <% end %>
 </ul>
+
+<%= render 'comments/form', commentable: commentable %>

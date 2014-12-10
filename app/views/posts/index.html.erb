@@ -1,4 +1,6 @@
 <h1>LISTS OF POSTS</h1>
+<p class="notice"><%= flash[:notice] %></p>
+<p class="alert"><%= flash[:alert] %></p>
 <ul>
 <% @posts.each do |post| %>
 	<li>
@@ -12,13 +14,12 @@
 			<%= link_to "Edit post", edit_post_path(post) %> 
 		</span>
 		<span>
-			<%= link_to "Delete post", post_path(post), method: :delete %> 
+			<%= link_to "Delete post", post_path(post), method: :delete,
+              data: { confirm: 'Are you sure?' } %> 
 		</span>
 	</li>
 <% end %>
 </ul>
 <ul>
 <%= link_to "Create post", new_post_path %>
-<p class="notice"><%= flash[:notice] %></p>
-<p class="alert"><%= flash[:alert] %></p>
 </ul>
